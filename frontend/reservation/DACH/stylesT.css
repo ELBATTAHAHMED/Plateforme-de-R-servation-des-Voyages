@@ -1,0 +1,134 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+main {
+    padding: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background-color: #c5e3e1; /* Vert d'eau */
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.reservation-table {
+    margin-bottom: 20px;
+}
+
+    .reservation-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .reservation-table th, .reservation-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .reservation-table th {
+        background-color: #f2f2f2;
+    }
+
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+    
+    header {
+        background-color: #01796F;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    nav ul li {
+        display: inline;
+        margin-right: 10px;
+    }
+    
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+    
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    
+    th {
+        background-color: #9a1515;
+    }
+    
+    button {
+        padding: 5px 10px;
+        margin-right: 5px;
+        background-color: #ed0b0b;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    .stat-card {
+        background-color: #f1f1f1;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    
+    .reservation-table {
+        padding: 20px;
+    }
+    
+    .add-button {
+        margin-bottom: 10px;
+        background-color: #07ad55;
+    }
+    
+    .add-button:hover {
+        background-color: #0056b3;
+    }
+    

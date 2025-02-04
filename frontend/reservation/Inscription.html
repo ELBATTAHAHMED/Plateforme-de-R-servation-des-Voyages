@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up Form</title>
+
+    <!-- STYLE LINK -->
+    <link rel="stylesheet" href="css/styleInscription.css">
+    <!-- STYLE LINK -->
+
+    <!-- FONT AWESOME CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- FONT AWESOME CDN -->
+</head>
+<body>
+    
+
+
+    <div class="signup" style="background-image: url(image/inscription.jpg); ">
+
+        <div class="signup-box">
+            <div class="wrapper">
+
+
+            <form id ="signupForm"  >
+                <h3>Bienvenue</h3>
+                <p>Inscrivez-vous pour en savoir plus sur nos offres.</p>
+
+                <div class="inp">
+                    <input type="text" name="nom_utilisateur" placeholder="Nom" class="form-control" required>
+                </div>
+                <div class="inp">
+                    <input type="text" name="prenom_utilisateur" placeholder="Prenom" class="form-control" required>
+                </div>
+
+                <div class="inp">
+                    <input type="email" name="email_utilisateur" placeholder="Email" class="form-control" required>
+                </div>
+                <div class="inp">
+                    <input type="date" name="date_naissance" placeholder="Date de naissance" name="date_naissance" class="form-control" required>
+                </div>
+                <div class="inp">
+
+                    <input type="text" placeholder="Pays"  name="pays" class="form-control" required>
+                </div>
+                <div class="inp">
+                    <select id="genre" placeholder="Genre" name="genre" class="form-control" required>
+                        <option value="" class="form-control" >Sélectionnez votre genre</option>
+                        <option value="Homme" class="genre">Homme</option>
+                        <option value="Femme" class="genre">Femme</option>
+                    </select>
+                </div>
+            
+            <div class="inp">
+                <input type="text" placeholder="Username" name="username" class="form-control" required>
+            </div>
+                <div class="inp">
+                    <input type="password" placeholder="Password" name="password" class="form-control" required>
+                </div>
+                <div class="inp">
+                    <input type="tel" id="telephone" placeholder="tele" name="num_tele" class="form-control" required>
+                </div>
+
+                <button>s'inscrire</button>
+
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $('#signupForm').submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serializeArray().reduce(function(obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+            $.ajax({
+                url: 'http://localhost:8081/utilisateurs/create',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function () {
+                    alert('Inscription réussie! Bienvenue!');
+                    window.location.href = 'index.html';
+                },
+                error: function (xhr) {
+                    alert('Échec de l\'inscription. Veuillez réessayer.' + xhr.responseText);
+                }
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

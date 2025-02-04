@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>activitee</title>
+    <link rel="stylesheet" href="activiteeStyle.css">
+   
+</head>
+<body>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+        <header class="header">
+            <div class="header-top">
+                <div action="container">
+                    <a href="#" class="logo">
+                        <img src="image/logo1.png" >
+                    </a>
+                </div>
+                <div class="home-btns">
+                    <button class="btn-booking"> <a href="#searchHebergemets" style="color:white">Hébergements</a></button>
+                    <button class="btn-booking"><a href="vols.html" style="color:white">Vols</a></button>
+                    <button class="btn-booking"><a href="Taxis.html" style="color:white">Taxi</a></button>
+                    <button class="btn-booking"><a href="location.html" style="color:white">location de Voiture</a></button>
+                    <button class="btn-booking"><a href="activitee.html" style="color:white">Activites</a></button>
+                    <button class="btn-booking"><a href="Trains.html" style="color:white">Trains</a></button>
+                </div>
+                <div class="publicite" style=" color:aliceblue; margin-top: 30px;">
+                    <h1> Réservez simplement</h1>
+                    <p style=" color:aliceblue; margin-top: 30px;">"Réservez votre Activitée en toute simplicité ".</p>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="home" id="home" style="margin-top:180px; background: url(image/voiture.jpg); ">
+                <div class="touch-search">
+                    <div class="container">
+                        <form action="" class="form" id="searchHebergemets">
+                            <div class="input-line">
+                                <label for="destination" class="input-label">Pays</label>
+                                <input type="text" name="destination" id="destination" class="input-field" placeholder="Entrer Pays" style="color: rgba(0, 27, 26, 0.75);">
+                            </div>
+                            <div class="input-line">
+                                <label for="pax" class="input-label">Ville</label>
+                                <input type="text" name="pax" id="pax" class="input-field" placeholder="Ville" style="color: rgba(0, 27, 26, 0.75);">
+                            </div>
+
+
+
+                            <div class="btns-line">
+                                <button type="submit" class="btn-booking">Rechercher</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script src="jquery3.7.1.js"></script>
+        <script type="text/javascript"></script>
+        <script>$(document).ready(function () {
+                    $("#btn-recherche").click(function () {
+                        var ville = $("#ville").val();
+                        var pays= $("#pays").val(); // Récupère la valeur du champ pays
+
+                        if (ville === "" || pays === "") { // Vérifie si les champs sont vides
+                            alert("Veuillez remplir tous les champs.");
+                            return;
+                        }
+
+                        var data = {
+                            ville: ville,
+                            pays: pays,
+                        };
+
+                        // AJAX request
+                        $.ajax({
+                            url: "/hebergements/all",
+                            type: "Get",
+                            data: data,
+                            dataType: "json",
+                            success: function (response) {
+                                if (response.status === "success") {
+                                    var resultats = response.data;
+                                    var html = "";
+
+                                    for (var i = 0; i < resultats.length; i++) {
+                                        var transport = resultats[i];
+                                        html += "<div class='transports'>";
+                                        html += "<h2>" + transports.lieu_depart+ "</h2>";
+                                        html += "<p>" + transports.description + "</p>";
+                                        html += "<p><strong>Prix:</strong> " + transports.prix + "€</p>";
+                                        html += "<a href='" + transports.ville + "'>Voir plus</a>";
+                                        html += "</div>";
+                                    }
+
+                                    $("#resultats-recherche").html(html);
+                                } else {
+                                    alert("Une erreur est survenue lors de la recherche.");
+                                }
+                            },
+                            error: function (error) {
+                                console.error("Erreur AJAX:", error);
+                            }
+                        });
+                    });
+                });</script>
+    </body>
+</html>

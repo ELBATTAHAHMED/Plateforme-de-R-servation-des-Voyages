@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuding </title>
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-top">
+        <div class="container">
+
+            <a href="#" class="logo">
+                <img src="image/logo1.png">
+            </a>
+
+
+            <div class="header-btns">
+                <div class="booking">
+                    <button class="btn btn-booking" id="loginButton" style="display: none;"><a href="login.html" style="color:white;"> log-in</a></button>
+                    <button class="btn btn-booking" id="logoutButton" style="display: none;">Log_Out</button>
+
+
+                </div>
+                <label class="h-btn" for="bars"><a href="#" style="color:white;"> <i class="fa fa-bars"></i></a></label>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom">
+        <div class="container">
+            <input type="checkbox" name="" id="bars">
+            <nav class="navigation">
+
+            </nav>
+
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="home" id="home">
+        <video src="image/video1.mp4" autoplay muted loop class="video"></video>
+        <div class="wrapper">
+            <div class="container">
+                <h2 class="home-title"><br> <strong>YUDING</strong></h2>
+                <div class="home-subtitle">
+                    <p class="">
+                        BIENVENUE<br />
+                        Nous apprécions votre temps et souhaitons nous assurer que votre expérience avec nous est sans stress et fluide. C'est pourquoi nous avons investi dans cette plateforme pour rendre les réservations plus accessibles et efficaces.
+                    </p>
+                </div>
+
+                <div class="home-btns">
+                    <button class="btn-booking"> <a href="#searchHebergemets" style="color:white">Hébergements</a></button>
+                    <button class="btn-booking"><a href="vols.html" style="color:white">Vols</a></button>
+                    <button class="btn-booking"><a href="Taxis.html" style="color:white">Taxi</a></button>
+                    <button class="btn-booking"><a href="location.html" style="color:white">location de Voiture</a></button>
+                    <button class="btn-booking"><a href="activitees.html" style="color:white">Activites</a></button>
+                    <button class="btn-booking"><a href="Trains.html" style="color:white">Trains</a></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="touch-search">
+        <div class="container">
+            <form action="http://localhost:8090/hebergements/search" method="post" class="form" id="searchHebergemets">
+                <div class="input-line">
+                    <label for="destination" class="input-label">Pays</label>
+                    <input type="text" name="destination" id="destination" class="input-field" placeholder="Entrer Pays" style="color: rgba(0, 27, 26, 0.75);">
+                </div>
+                <div class="input-line">
+                    <label for="pax" class="input-label">Ville</label>
+                    <input type="text" name="pax" id="pax" class="input-field" placeholder="Ville" style="color: rgba(0, 27, 26, 0.75);">
+                </div>
+                <div class="input-line">
+                    <label for="end" class="input-label">Nombre </label>
+                    <input type="number" name="child" id="number" class="input-field" placeholder="0" style="color: rgba(0, 27, 26, 0.75);">
+                </div>
+                <div class="btns-line">
+                    <button type="submit" class="btn-booking">Rechercher</button>
+                    <div id="search-results"></div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- Section pour les résultats de la recherche -->
+    <section id="search-results" class="search-results">
+        <div class="container">
+            <h2 >Résultats de recherche</h2>
+
+            <div id="results-container">
+                <!-- Les résultats seront injectés ici -->
+            </div>
+        </div>
+    </section>
+
+
+    <section class="destination">
+
+        <div class="container">
+            <div class="heading">
+                <h4 class="subtitle-heading">
+                </h4>
+                <h1 class="title-heading">
+                    Destinations populaires
+                </h1>
+                <div class="desc-heading">
+                    <p>
+                        Découvrez les destinations les plus populaires de notre plateforme et trouvez l'inspiration pour votre prochain voyage. Que vous cherchiez à vous détendre sur une plage exotique, à explorer une ville animée ou à vous immerger dans la nature, nous avons des options pour tous les goûts et tous les budgets.
+                    </p>
+
+                </div>
+            </div>
+            <div class="items">
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/chefchaoun.jpeg" alt="" srcset="">
+                    </div>
+                    <div class="card">
+
+                        <small class="local">
+                            MAROC
+                        </small>
+                        <h2 class="title">
+                            CHEFCHAOUEN
+                        </h2>
+                        <div class="desc">
+                            <p>
+                                Chefchaouen, la perle bleue du Rif, offre des ruelles étroites, des maisons blanches et bleues, et une atmosphère paisible.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/Dakhla.jpg" alt="" srcset="">
+                    </div>
+                    <div class="card">
+
+                        <small class="local">
+                            Maroc
+                        </small>
+                        <h2 class="title">
+                            DAKHLA
+                        </h2>
+                        <div class="desc">
+                            <p>
+                                Dakhla, Une destination de sports nautiques de premier plan avec un paysage époustouflant de désert et de mer, et des fruits de mer délicieux.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/marrakech.jpg" alt="" srcset="">
+                    </div>
+                    <div class="card">
+                        <small class="local">
+                            Maroc
+                        </small>
+                        <h2 class="title">
+                            MARRAKECH
+                        </h2>
+                        <div class="desc">
+                            <p>
+                                Marrakech,une ville animée et vibrante qui offre une expérience culturelle unique avec ses souks colorés, ses palais majestueux, ses jardins luxuriants et sa cuisine épicée.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="room top" id="room">
+        <div class="container">
+            <div class="heading_top flex1">
+                <div class="heading">
+                    <h2 style="font-size: 34px; line-height: 44px; text-transform: uppercase; color: rgba(0, 27, 26, 0.75); ">Type d'hébergements</h2>
+                </div>
+            </div>
+
+            <div class="content grid">
+                <div class="box">
+                    <div class="img">
+                        <img src="image/maisonsVacances.jpg" alt="">
+                    </div>
+                    <div class="text">
+
+                        <h3><a href="" style="color: rgba(0, 27, 26, 0.75);">Maisons de vacances</a></h3>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img">
+                        <img src="image/hotels.jpg" alt="">
+                    </div>
+                    <div class="text">
+                        <h3><a href="" style="color: rgba(0, 27, 26, 0.75);">Hotels</a></h3>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="img">
+                        <img src="image/appartements.jpg" alt="">
+                    </div>
+                    <div class="text">
+                        <h3><a href="" style="color: rgba(0, 27, 26, 0.75);">Appartements</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="gallery" id="gallery">
+
+        <div class="container">
+            <div class="heading">
+                <h4 class="subtitle-heading">
+                </h4>
+                <h1 class="title-heading">
+                    PHOTOS DE NOTRE SERVICES
+                </h1>
+                <div class="desc-heading">
+
+                </div>
+            </div>
+            <div class="items">
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie1.jpg" alt="" srcset="">
+                    </div>
+
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie2.jpg" alt="" srcset="">
+                    </div>
+
+                </div>
+
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie3.jpg" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie4.jpg" alt="" srcset="">
+                    </div>
+
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie5.jpg" alt="" srcset="">
+                    </div>
+
+                </div>
+
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie6.jpg" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie7.jpg" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie8.jpg" alt="" srcset="">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="img-item">
+                        <img src="image/galerie9.jpeg" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+
+
+        <h1 style="font-size: 34px; line-height: 44px; text-transform: uppercase; color: rgba(0, 27, 26, 0.75); ">Formulaire de commentaire</h1>
+        <div class="cadre-formulaire">
+            <form action="#" class="comment" action="http://localhost:8072/comments/creat" method="post">
+                <label for="nom">Votre nom :</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="email">Votre adresse email :</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="commentaire">Votre commentaire :</label>
+                <textarea id="commentaire" name="commentaire" required></textarea>
+
+                <button type="submit" style="font-size: 20px;">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#searchHebergemets").submit(function (event) {
+                event.preventDefault(); // Empêche la soumission traditionnelle du formulaire
+
+                var pays = $('#destination').val();
+                var ville = $('#pax').val();
+
+                // Requête AJAX
+                $.ajax({
+                    url: 'http://localhost:8090/hebergements/search',
+                    type: 'POST',
+                    data: { pays: pays, ville: ville },
+                    success: function (data) {
+                        var html = '';
+                        if (data.length > 0) {
+                            data.forEach(function (hebergement) {
+                                html += '<div class="hebergement-result">';
+                                html += '<strong>Nom hébergement: </strong><span>' + hebergement.nom_hebergement + '</span><br>';
+                                html += '<strong>Adresse hébergement: </strong><span>' + hebergement.adresseHebergement + '</span><br>';
+                                html += '<strong>Prix hébergement: </strong><span>' + hebergement.prix_hebergement + '$' + ' </span><br>';
+                                html += '<strong>Capacité hébergement: </strong><span>' + hebergement.capacite_hebergement + ' personnes</span><br>';
+                                html += '<strong>Description: </strong><span>' + hebergement.desc_hebergement + '</span><br>';
+
+                                // Passer l'ID utilisateur et l'ID hébergement dans l'URL
+                                var userId = sessionStorage.getItem('userId');
+                                console.log("User ID for reservation button:", userId); // Vérifier l'ID de l'utilisateur
+                                html += '<button class="btn-booking" style="background-color:#218a87" onclick="window.location.href=\'reservationTransport.html?hebergementId=' + hebergement.id + '&userId=' + userId + '\'">Réserver</button>';
+                                html += '</div>';
+                            });
+                        } else {
+                            html = '<p>Aucun hébergement trouvé pour votre recherche.</p>';
+                        }
+                        $('#results-container').html(html);
+                    },
+                    error: function () {
+                        $('#results-container').html('<p>Erreur lors de la recherche. Veuillez réessayer plus tard.</p>');
+                    }
+                });
+            });
+        });
+
+
+        function updateLoginStatus() {
+            if (sessionStorage.getItem('isLoggedIn') === 'true') {
+                document.getElementById('loginButton').style.display = 'none';
+                document.getElementById('logoutButton').style.display = 'block';
+
+                // Récupérer les informations de l'utilisateur connecté et les afficher dans le formulaire
+                var username = sessionStorage.getItem('username');
+                var email = sessionStorage.getItem('email');
+                $('#nom').val(username);  // Remplir le champ nom
+                $('#email').val(email);  // Remplir le champ email
+            } else {
+                document.getElementById('loginButton').style.display = 'block';
+                document.getElementById('logoutButton').style.display = 'none';
+            }
+        }
+
+        window.onload = function() {
+            updateLoginStatus();  // Update buttons on page load
+
+            document.getElementById('logoutButton').onclick = function() {
+                sessionStorage.setItem('isLoggedIn', 'false'); // Update login status
+                alert("Vous êtes maintenant déconnecté."); // Show logout message
+                updateLoginStatus(); // Update buttons after logging out
+                window.location.href = 'index.html'; // Optional: Redirect to index.html
+            };
+
+            document.getElementById('loginButton').onclick = function() {
+                window.location.href = 'login.html'; // Redirect to the login page
+            };
+        };
+
+        $(document).ready(function() {
+            $('.comment').submit(function(event) {
+                // Empêcher le comportement par défaut du formulaire
+                event.preventDefault();
+
+                // Récupérer les valeurs des champs du formulaire
+                var nom = $('#nom').val();
+                var email = $('#email').val();
+                var contenu = $('#commentaire').val();
+
+                // Créer l'objet JSON à envoyer au serveur
+                var data = {
+                    "username": nom,
+                    "email": email,
+                    "contenu": contenu
+                };
+
+                // Envoyer les données au serveur via AJAX
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "http://localhost:8072/comments/create", // L'URL doit correspondre à celle de votre contrôleur
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function(data) {
+                        // Gérer la réponse du serveur
+                        alert("Commentaire créé avec succès !");
+                        // Vous pouvez ajouter ici d'autres actions comme vider le formulaire ou recharger la page
+                    },
+                    error: function() {
+                        // Gérer les erreurs éventuelles
+                        alert("Une erreur s'est produite lors de la création du commentaire.");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+</body >
+
+</html >

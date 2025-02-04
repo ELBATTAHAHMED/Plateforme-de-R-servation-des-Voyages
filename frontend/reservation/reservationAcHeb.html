@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background-image: url('image/activitee.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .wrapper {
+            width: 420px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #218a87;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #218a87;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #186b68;
+        }
+
+        .payment-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <form id="reservation-form">
+        <h1>Réservation</h1>
+
+        <label for="date_reservation">Date de début :</label>
+        <input type="date" id="date_reservation" name="date_reservation" required>
+
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="duree_reservation">Durée (jours) :</label>
+        <input type="number" id="duree_reservation" name="duree_reservation" required>
+
+        <label for="nombre_personne">Nombre de personnes :</label>
+        <input type="number" id="nombre_personne" name="nombre_personne" required>
+
+        <button type="submit" class="btn" id="reserve-btn">Réserver</button>
+    </form>
+
+    <div class="payment-section" id="payment-section">
+        <p id="montant-total">Montant total à payer : </p>
+        <form id="payment-form">
+            <label for="mode_paiement">Mode de paiement :</label>
+            <select id="mode_paiement" name="mode_paiement" required>
+                <option value="">Sélectionnez un mode</option>
+                <option value="carte_credit">Carte de crédit</option>
+                <option value="carte_debit">Carte de débit</option>
+                <option value="paypal">PayPal</option>
+            </select>
+
+            <label for="card-number">Numéro de carte :</label>
+            <input type="text" id="card-number" name="card-number" required>
+
+            <label for="expiry-date">Date d'expiration :</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+
+            <label for="cvv">CVV :</label>
+            <input type="text" id="cvv" name="cvv" required>
+
+            <button type="submit" class="btn">Payer</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#reservation-form').submit(function(event) {
+            event.preventDefault();
+
+            let username = $('#username').val();
+            let password = $('#password').val();
+
+            $.ajax({
+                url: `http://localhost:8081/utilisateurs/search?username=${username}&password=${password}`,
+                type: 'POST',
+                success: function(response) {
+                    if (response) {
+                        let totalAmount = calculateTotal();
+                        $('#montant-total').text(`Montant total à payer : ${totalAmount} EUR`);
+                        $('#payment-section').show();
+                    } else {
+                        alert('Identifiants incorrects.');
+                    }
+                },
+                error: function() {
+                    alert('Erreur de connexion au service utilisateur.');
+                }
+            });
+        });
+
+        function calculateTotal() {
+            let duree = parseInt($('#duree_reservation').val());
+            let nbPersonnes = parseInt($('#nombre_personne').val());
+            return duree * nbPersonnes * 20; // Exemple : 20 EUR par personne et par jour
+        }
+
+        $('#payment-form').submit(function(event) {
+            event.preventDefault();
+
+            let reservationData = {
+                date_reservation: $('#date_reservation').val(),
+                username: $('#username').val(),
+                email: $('#email').val(),
+                duree: $('#duree_reservation').val(),
+                nombre_personne: $('#nombre_personne').val(),
+                mode_paiement: $('#mode_paiement').val()
+            };
+
+            $.ajax({
+                url: 'http://localhost:8090/reservations/create',
+                type: 'POST',
+                contentType: 'application/json',  // Définir le type de contenu sur JSON
+                data: JSON.stringify(reservationData),  // Convertir les données en format JSON
+                success: function() {
+                    alert('Réservation confirmée !');
+                },
+                error: function() {
+                    alert('Erreur lors de la réservation.');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

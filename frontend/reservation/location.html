@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Location de voiture</title>
+    <link rel="stylesheet" href="css/VoitureStyle.css">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+
+    <header class="header">
+        <div class="header-top">
+            <div action="container">
+                <a href="#" class="logo">
+                    <img src="image/logo1.png" alt="" >
+                </a>
+            </div>
+            <div class="home-btns">
+                <button class="btn-booking"> <a href="index.html" style="color:white">Hébergements</a></button>
+                <button class="btn-booking"><a href="Vols.html" style="color:white">Vols</a></button>
+                <button class="btn-booking"><a href="Taxis.html" style="color:white">Taxi</a></button>
+                <button class="btn-booking"><a href="location.html" style="color:white">location de Voiture</a></button>
+                <button class="btn-booking"><a href="activitees.html" style="color:white">Activites</a></button>
+                <button class="btn-booking"><a href="Trains.html" style="color:white">Trains</a></button>
+            </div>
+            <div class="publicite" style=" color:aliceblue; margin-top: 30px;">
+                <h1 style=" color:aliceblue; margin-top: 30px;  text-align: center;"> Oubliez les files d'attente et les tracas !</h1>
+                <p style=" color:aliceblue; margin-top: 30px;  text-align: center;">"Louez votre voiture en quelques clics avec notre plateforme simple et intuitive.".</p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="home" id="home" style="margin-top:180px; background: url(image/voiture.jpg); ">
+            <div class="touch-search">
+                <div class="container">
+                    <form action="" class="form" id="searchVoiture" action="http://localhost:8090/api/transports/search/ville" method="POST">
+                        
+                        <div class="input-line">
+                            <label for="destination" class="input-label">Pays</label>
+                            <input type="text" name="destination" id="destination" class="input-field" placeholder="Pays" style="color: rgba(0, 27, 26, 0.75);">
+                        </div>
+                        <div class="input-line">
+                            <label for="destination" class="input-label">Ville</label>
+                            <input type="text" name="ville" id="ville" class="input-field" placeholder="Ville" style="color: rgba(0, 27, 26, 0.75);">
+                        </div>
+                        <div class="input-line">
+                            <label for="pax" class="input-label">Marques</label>
+                            <input type="text" name="pax" id="pax" class="input-field" placeholder="Marque" style="color: rgba(0, 27, 26, 0.75);">
+                        </div>
+
+                     
+                      
+                        <div class="btns-line">
+                            <button type="submit" class="btn-booking">Rechercher</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div></section>
+            <!-- Section pour les résultats de la recherche -->
+    <section id="search-results" class="search-results">
+        <div class="container">
+            <h2>Résultats de recherche</h2>
+
+            <div id="results-container">
+                <!-- Les résultats seront injectés ici -->
+            </div>
+        </div>
+    </section>
+            </main>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $("#searchVoiture").submit(function (event) {
+                        event.preventDefault();
+                        var ville = $('#ville').val();
+                        console.log("Ville: ", ville);
+                
+                        $.ajax({
+                            url: 'http://localhost:8090/transports/search/ville',
+                            type: 'POST',
+                            data: { ville: ville },
+                            success: function (data) {
+                                var html = '';
+                                if (data.length > 0) {
+                                    data.forEach(function (transport) {
+                                        html += '<div class="hebergement-result">';
+                                        html += '<strong>Ville: </strong><span>' + transport.ville + '</span><br>';
+                                        html += '<strong>Description: </strong><span>' + transport.desc_transport + '</span><br>';
+                                        html += '<strong>Compagnie: </strong><span>' + transport.compagnie + '</span><br>';
+                                        html += '<strong>Adresse: </strong><span>' + transport.adresse + '</span><br>';
+                                        html += '<strong>Marque: </strong><span>' + transport.marque + '</span><br>';
+                                        html += '<strong>Prix: </strong><span>' + transport.prix_transport +'$'+'</span><br>';
+                                        html += '<strong>Pays: </strong><span>' + transport.pays + '</span><br>';
+                                        html += '<strong>Contact: </strong><span>' + transport.tele_fournisseur + '</span><br>';
+                                        html += '<button class="btn-booking" style="background-color:#218a87" onclick="window.location.href=\'reservationTransport.html?transportId=' + transport.id + '\'">Réserver</button>';
+                                        html += '</div>';
+                                    });
+                                } else {
+                                    html = '<p>Aucune voiture de location trouvée pour les critères donnés.</p>';
+                                }
+                                $('#search-results').html(html);
+                            },
+                            error: function () {
+                                $('#search-results').html('<p>Erreur lors de la recherche. Veuillez réessayer plus tard.</p>');
+                            }
+                        });
+                    });
+                });
+                </script>
+                
+</body>
+</html>

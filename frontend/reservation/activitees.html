@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>activitee</title>
+    <link rel="stylesheet" href="css/VoitureStyle.css">
+        
+</head>
+<body>
+
+
+        <header class="header">
+            <div class="header-top">
+                <div action="container">
+                    <a href="#" class="logo">
+                        <img src="image/logo1.png" alt="" >
+                    </a>
+                </div>
+                <div class="home-btns">
+                    <button class="btn-booking"> <a href="index.html" style="color:white">Hébergements</a></button>
+                    <button class="btn-booking"><a href="vols.html" style="color:white">Vols</a></button>
+                    <button class="btn-booking"><a href="Taxis.html" style="color:white">Taxi</a></button>
+                    <button class="btn-booking"><a href="location.html" style="color:white">location de Voiture</a></button>
+                    <button class="btn-booking"><a href="activitee.html" style="color:white">Activites</a></button>
+                    <button class="btn-booking"><a href="Trains.html" style="color:white">Trains</a></button>
+                </div>
+                <div class="publicite" style=" color:aliceblue; margin-top: 30px;">
+                    <h1 style=" color:aliceblue; margin-top: 30px;  text-align: center;"> Ne manquez pas les meilleures activités !</h1>
+                    <p style=" color:aliceblue; margin-top: 30px;  text-align: center;">"Yuding est votre guichet unique pour réserver des activités incroyables dans votre région et partout dans le monde.".</p>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section class="home" id="home" style="margin-top:180px; background: url(image/activitee.jpg); ">
+                <div class="touch-search">
+                    <div class="container">
+                        <form action="http://localhost:8090/activities/search1" methode="POST" class="form" id="searchActivitiesForm">
+                            <div class="input-line">
+                                <label for="destination" class="input-label">Pays</label>
+                                <input type="text" name="pays" id="pays" class="input-field" placeholder="Entrer Pays" style="color: rgba(0, 27, 26, 0.75);">
+                            </div>
+                            <div class="input-line">
+                                <label for="pax" class="input-label">Ville</label>
+                                <input type="text" name="ville" id="ville" class="input-field" placeholder="Ville" style="color: rgba(0, 27, 26, 0.75);">
+                            </div>
+                            <div class="input-line">
+                                <label for="pax" class="input-label">Duree</label>
+                                <input type="text" name="pax" id="pax" class="input-field" placeholder="Duree" style="color: rgba(0, 27, 26, 0.75);">
+                            </div>
+
+
+
+                            <div class="btns-line">
+                                <button type="submit" class="btn-booking">Rechercher</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <section id="search-results" class="search-results">
+                <div class="container">
+                    <h2>Résultats de recherche</h2>
+                    <div id="results-container">
+                        <!-- Les résultats seront injectés ici -->
+                    </div>
+                </div>
+            </section>
+        
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#searchActivitiesForm').submit(function (event) {
+                        event.preventDefault();
+                        var pays = $('#pays').val();
+                        var ville = $('#ville').val();
+                
+                        $.ajax({
+                            url: 'http://localhost:8090/activities/search1',
+                            type: 'POST',
+                            data: { ville: ville, pays: pays },
+                            success: function (data) {
+                                console.log(data); 
+                                var html = '';
+                                if (data.length > 0) {
+                                    data.forEach(function (activitee) { 
+                                        html += '<div class="hebergement-result">';
+                                        html += '<strong>Ville: </strong><span>' + activitee.ville + '</span><br>';
+                                        html += '<strong>Description: </strong><span>' + activitee.desc_activitee + '</span><br>';
+                                        html += '<strong>Durée: </strong><span>' + activitee.duree +'jours'+ '</span><br>';
+                                        html += '<strong>Pays: </strong><span>' + activitee.pays + '</span><br>';
+                                        html += '<strong>Prix: </strong><span>' + activitee.prix_activitee + '$' + '</span><br>';
+                                        html += '<strong>Responsable: </strong><span>' + activitee.nom_fournisseur +'</span><br>';
+                                        html += '<strong>Tele: </strong><span>' + activitee.tele_fournisseur  + '</span><br>';
+                                        //html += '<img src="' + activitee.photo + '" style="width:100px;height:100px;"><br>';
+                                        html += '<button class="btn-booking" style="background-color:#218a87" onclick="window.location.href=\'reservationTransport.html?activiteeId=' + activitee.id + '\'">Réserver</button>';
+                                        html += '</div>';
+                                    });
+                                } else {
+                                    html = '<p>Aucune activité trouvée pour cette recherche.</p>';
+                                }
+                                $('#results-container').html(html);
+                            },
+                            error: function () {
+                                $('#results-container').html('<p>Erreur lors de la recherche. Veuillez réessayer plus tard.</p>');
+                            }
+                        });
+                    });
+                });
+            </script>
+        </body>
+        </html>
+
+        

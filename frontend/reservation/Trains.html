@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Trains</title>
+    <link rel="stylesheet" href="css/TrainStyle.css">
+</head>
+<body>
+   
+
+    <header class="header">
+        <div class="header-top">
+            <div action="container">
+                <a href="#" class="logo">
+                    <img src="image/logo1.png" alt="" >
+                </a>
+            </div>
+            <div class="home-btns">
+                <div class="home-btns">
+                    <button class="btn-booking"> <a href="index.html" style="color:white">Hébergements</a></button>
+                    <button class="btn-booking"><a href="Vols.html" style="color:white">Vols</a></button>
+                    <button class="btn-booking"><a href="Taxis.html" style="color:white">Taxi</a></button>
+                    <button class="btn-booking"><a href="location.html" style="color:white">location de Voiture</a></button>
+                    <button class="btn-booking"><a href="activitees.html" style="color:white">Activites</a></button>
+                    <button class="btn-booking"><a href="Trains.html" style="color:white">Trains</a></button>
+                </div>
+                <div class="publicite" style=" color:aliceblue; margin-top: 30px;">
+                    <h1> Réservez vos trains !</h1>
+                    <p style=" color:aliceblue; margin-top: 30px;  text-align: center;">"Évitez les files d'attente et réservez vos billets de train en ligne en quelques clics"</p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="home" id="home" style="margin-top:180px; background: url(image/train.jpg); ">
+            <div class="touch-search">
+                <div class="container">
+                    <form class="form" id="searchTrains" action="http://localhost:8090/transports/search3" method="POST">
+                        <div class="input-line">
+                            <label for="pays" class="input-label">Pays</label>
+                            <input type="text" name="pays" id="pays" class="input-field" placeholder="Entrer votre pays">
+                        </div>
+                        <div class="input-line">
+                            <label for="ville" class="input-label">Ville</label>
+                            <input type="text" name="ville" id="ville" class="input-field" placeholder="Entrer votre ville">
+                        </div>
+                        <div class="input-line">
+                            <label for="lieuarr" class="input-label">Lieu d'arrivée</label>
+                            <input type="text" name="lieuarr" id="lieuarr" class="input-field" placeholder="Entrer votre destination">
+                        </div>
+                        <div class="btns-line">
+                            <button type="submit" class="btn-booking">Rechercher</button>
+                        </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Section pour les résultats de la recherche -->
+    <section id="search-results" class="search-results">
+        <div class="container">
+            <h2>Résultats de recherche</h2>
+
+            <div id="results-container">
+                <!-- Les résultats seront injectés ici -->
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#searchTrains").submit(function (event) {
+            event.preventDefault();
+            var pays = $('#pays').val();
+            var ville = $('#ville').val();
+            var lieuarr = $('#lieuarr').val();
+
+            console.log("pays: ", pays);
+            console.log("ville: ", ville);
+            console.log("lieuarr: ", lieuarr);
+
+            $.ajax({
+                url: 'http://localhost:8090/transports/search3',
+                type: 'POST',
+                data: { pays: pays, ville: ville, lieuarr: lieuarr },
+                success: function (data) {
+                    var html = '';
+                    if (data.length > 0) {
+                        data.forEach(function (transport) {
+                            html += '<div class="hebergement-result">';
+                            html += '<strong>Ville : </strong><span>' + transport.ville + '</span><br>';
+                            html += '<strong>Description : </strong><span>' + transport.desc_transport + '</span><br>';
+                            html += '<strong>Compagnie : </strong><span>' + transport.compagnie + '</span><br>';
+                            html += '<strong>Lieu de départ : </strong><span>' + transport.lieu_depp + '</span><br>';
+                            html += '<strong>Lieu d\'arrivée : </strong><span>' + transport.lieu_arr + '</span><br>';
+                            html += '<strong>Prix : </strong><span>' + transport.prix_transport + '$' + '</span><br>';
+                            html += '<strong>Pays : </strong><span>' + transport.pays + '</span><br>';
+                            html += '<button class="btn-booking" style="background-color:#218a87" onclick="window.location.href=\'reservationTransport.html?transportId=' + transport.id + '\'">Réserve</button>';
+                            html += '</div>';
+                        });
+                    } else {
+                        html = '<p>Aucun transport trouvé pour les critères donnés.</p>';
+                    }
+                    $('#results-container').html(html);
+                },
+                error: function () {
+                    $('#results-container').html('<p>Erreur lors de la recherche. Veuillez réessayer plus tard.</p>');
+                }
+            });
+        });
+    });
+</script>
+
+
+        
+
+</body >
+</html >
