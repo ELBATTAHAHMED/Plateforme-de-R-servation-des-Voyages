@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ahmed</groupId>
-	<artifactId>Reservation-Service</artifactId>
+	<artifactId>alerts-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Reservation-Service</name>
-	<description>Reservation-Service</description>
+	<name>Alerts-Service</name>
+	<description>Alerts-Service</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -56,10 +56,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
