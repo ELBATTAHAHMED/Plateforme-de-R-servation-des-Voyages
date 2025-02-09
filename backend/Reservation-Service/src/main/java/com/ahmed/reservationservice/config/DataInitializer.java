@@ -43,8 +43,8 @@ public class DataInitializer {
 
             if (transportsRepo.count() == 0) {
                 transportsRepo.saveAll(List.of(
-                       new Transports(null, "Avion", "Vol direct", "Royal Air Maroc", "Casablanca", "Marrakech", "Aéroport", "Boeing 737", 800, "RAM", "0644444444", "Maroc", "Casablanca", "Maroc", "Marrakech", List.of("avion.jpg")),
-                       new Transports(null, "Train", "TGV", "ONCF", "Casablanca", "Marrakech", "Gare", "Al Boraq", 200, "ONCF", "0655555555", "Maroc", "Casablanca", "Maroc", "Marrakech", List.of("train.jpg"))
+                       new Transports(null, "Avion", "Volez confortablement à bord d'un Boeing 737 de Royal Air Maroc pour un vol direct entre Casablanca et Marrakech. Profitez d'un service de qualité supérieure et d'une expérience agréable tout en traversant les cieux marocains. L'avion vous amène rapidement à destination, avec une vue imprenable depuis le ciel.", "Royal Air Maroc", "Casablanca", "Marrakech", "Aéroport", "Boeing 737", 800, "RAM", "0644444444", "Maroc", "Casablanca", "Maroc", "Marrakech", List.of("avion.jpg")),
+                       new Transports(null, "Train", "Montez à bord du TGV Al Boraq, le train ultra-rapide de l'ONCF reliant Casablanca à Marrakech. Expérimentez une connexion rapide et confortable tout en traversant les paysages marocains. Le confort et la modernité du train Al Boraq vous garantissent un trajet agréable et efficace entre les deux villes emblématiques.", "ONCF", "Casablanca", "Marrakech", "Gare", "Al Boraq", 200, "ONCF", "0655555555", "Maroc", "Casablanca", "Maroc", "Marrakech", List.of("train.jpg"))
                 ));
             }
 
