@@ -9,7 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class CommentairesDTO {
 	private Long id_comment;
-	private String contenu;
+	private String contenuComment;
 	private LocalDateTime dateHeureComment;
-	
+
+
 }

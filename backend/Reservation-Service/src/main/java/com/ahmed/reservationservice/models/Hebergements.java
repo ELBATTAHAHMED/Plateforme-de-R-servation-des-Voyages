@@ -31,7 +31,7 @@ public class Hebergements {
 	private String type_hebergement;
 	@Column(name = "adresseHebergement" )
 	private String adresseHebergement;
-	@Column(name = "desc_hebergement")
+	@Column(name = "desc_hebergement" , length = 1000)
 	private String desc_hebergement;
 	@Column(name = "prix_hebergement" )
 	private float prix_hebergement;

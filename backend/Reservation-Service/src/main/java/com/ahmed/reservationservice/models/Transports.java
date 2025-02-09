@@ -25,7 +25,7 @@ public class Transports {
 	private Long idt;
 	@Column(name = "type_transport")
 	private String type_transport;
-	@Column(name = "desc_transport")
+	@Column(name = "desc_transport", length = 1000)
 	private String desc_transport;
 	@Column(name = "compagnie")
 	private String compagnie;

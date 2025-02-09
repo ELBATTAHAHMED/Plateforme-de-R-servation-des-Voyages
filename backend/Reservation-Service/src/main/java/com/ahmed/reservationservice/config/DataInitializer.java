@@ -29,15 +29,15 @@ public class DataInitializer {
         return args -> {
             if (activiteesRepo.count() == 0) {
                 activiteesRepo.saveAll(List.of(
-                        new Activitees(null, 150.0, "Marrakech", "Excursion dans les montagnes", "2 heures", "Voyage Maroc", "Maroc", Date.valueOf("2025-05-01"), "0667894561", "url_photo"),
-                        new Activitees(null, 200.0, "Fès", "Visite culturelle", "3 heures", "Explore Maroc", "Maroc", Date.valueOf("2025-06-15"), "0671234567", "url_photo")
+                        new Activitees(null, 150.0, "Marrakech", "Excursion dans les montagnes, une aventure inoubliable à travers les magnifiques montagnes marocaines. Cette activité vous emmène sur des sentiers pittoresques, où vous pourrez admirer des paysages époustouflants, respirer l'air frais de la montagne et découvrir la faune et la flore locales.", "2 heures", "Voyage Maroc", "Maroc", Date.valueOf("2025-05-01"), "0667894561", "url_photo"),
+                        new Activitees(null, 200.0, "Fès", "Visite culturelle, une immersion dans l’histoire et la richesse culturelle de la ville de Fès à travers une visite guidée exceptionnelle. Découvrez les trésors architecturaux, les médersas anciennes, les souks animés et les secrets de l’artisanat local tout en écoutant des récits fascinants sur l’héritage de cette ville impériale.", "3 heures", "Explore Maroc", "Maroc", Date.valueOf("2025-06-15"), "0671234567", "url_photo")
                 ));
             }
 
             if (hebergementsRepo.count() == 0) {
                 hebergementsRepo.saveAll(List.of(
-                        new Hebergements(null, "Hotel Atlas", "Hôtel", "Rue Atlas, Marrakech", "Hôtel 4 étoiles", 80.0f, 2, "Voyage Maroc", 0601234567L, "Marrakech", "Maroc", List.of("photo1.jpg", "photo2.jpg")),
-                        new Hebergements(null, "Riad Fès", "Riad", "Rue des Écoles, Fès", "Riad traditionnel", 120.0f, 4, "Explore Maroc", 0603334567L, "Fès", "Maroc", List.of("photo3.jpg", "photo4.jpg"))
+                        new Hebergements(null, "Hotel Atlas", "Hôtel", "Rue Atlas, Marrakech", "Un hôtel 4 étoiles situé à Marrakech, offrant un confort exceptionnel et des services haut de gamme. Idéal pour les voyageurs à la recherche d’un séjour agréable, l’établissement propose des chambres modernes, une cuisine raffinée et des installations de détente.", 80.0f, 2, "Voyage Maroc", 0601234567L, "Marrakech", "Maroc", List.of("photo1.jpg", "photo2.jpg")),
+                        new Hebergements(null, "Riad Fès", "Riad", "Rue des Écoles, Fès", "Un riad traditionnel au cœur de la médina de Fès, offrant une expérience authentique dans un cadre enchanteur. Avec son architecture typiquement marocaine, ses patios décorés et son ambiance paisible, cet établissement est parfait pour une immersion culturelle et un séjour mémorable.", 120.0f, 4, "Explore Maroc", 0603334567L, "Fès", "Maroc", List.of("photo3.jpg", "photo4.jpg"))
                 ));
             }
 

@@ -22,10 +22,20 @@
         <module name="User-Service" />
         <module name="Reservation-Service" />
       </profile>
+      <profile name="Annotation profile for Ai-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="Ai-service" />
+      </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Ai-service" options="-parameters" />
       <module name="Alerts-Service" options="-parameters" />
       <module name="Config-Service" options="-parameters" />
       <module name="Discovery-Service" options="-parameters" />

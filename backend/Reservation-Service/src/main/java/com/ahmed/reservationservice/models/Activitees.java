@@ -26,7 +26,7 @@ public class Activitees {
 	private Double prix_activitee;
 	@Column(name = "ville" )
 	private String ville;
-	@Column(name = "desc_activitee")
+	@Column(name = "desc_activitee" , length = 1000)
 	private String desc_activitee;
 	@Column(name = "duree" )
 	private String duree;
